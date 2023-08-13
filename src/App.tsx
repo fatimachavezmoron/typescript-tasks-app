@@ -21,9 +21,10 @@ interface Task {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       const target = e.currentTarget;
-      const titleInput = target['title'] as HTMLInputElement;
-      const descriptionInput = target['description'] as HTMLTextAreaElement;
-      
+      const titleInput = target['title'] as unknown as HTMLInputElement;
+      const descriptionInput = target['description'] as unknown as HTMLTextAreaElement;
+
+
       const newTask: Task = {
         title: titleInput.value,
         description: descriptionInput.value,
@@ -53,7 +54,7 @@ interface Task {
       <div className="bg-slate-800 text-white">
        <div className="flex justify-center items-center h-screen gap-x-2">
         <form onSubmit={handleSubmit} className="bg-slate-600 p-10 rounded-md max-w-md">
-            <label for="title" className="block">Title</label>
+            <label htmlFor="title" className="block">Title</label>
             <input className="bg-gray-700 px-1 py-2 w-full rounded-md mb-2" name="title" type="text" placeholder="write a title"/>
             <label htmlFor="tdescription" className="block">Description</label>
             <textarea className="bg-gray-700 px-1 py-2 w-full rounded-md mb-2" name="description" rows={3}></textarea>
